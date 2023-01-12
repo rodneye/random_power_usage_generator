@@ -1,4 +1,4 @@
-# random_power_usage_generator
+# Random power usage generator
 This will generate random power monitoring values and store them in a mongo database running on docker using python.
 
 # Requirements
