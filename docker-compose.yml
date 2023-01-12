@@ -1,0 +1,30 @@
+version: '3.5'
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "0.0.0.0:27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=power_monitoring 
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: "27017"
+    ports:
+      - "0.0.0.0:8081:8081"
+    depends_on:
+      - mongodb
+
+  # metabase:
+  #     image: metabase/metabase:latest
+  #     container_name: metabase
+  #     restart: always
+  #     ports: 
+  #       - "0.0.0.0:3001:3000"
